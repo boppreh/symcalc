@@ -1,11 +1,16 @@
 from sympy.abc import *
+from sympy.core.symbol import Symbol
 
-from flask import Flask, request
-app = Flask(__name__)
-
-@app.route('/code', methods=['GET', 'POST'])
-def code():
-    return str(eval(request.json['code']))
-
-if __name__ == "__main__":
-    app.run(debug=True, port=80)
+while True:
+    try:
+        line = input('')
+        print()
+        if '=' in line:
+            exec(line)
+        else:
+            _ = eval(line)
+            print(_)
+    except EOFError:
+        continue
+    except Exception as e:
+        print('Error:', e)
